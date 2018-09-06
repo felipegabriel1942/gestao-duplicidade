@@ -1,19 +1,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-	<h:head></h:head>
-	<h:body>
-		<p:dataTable var="pes" value="#{pessoaController.lista}">
-			<p:column headerText="Id">
-				<h:outputText value="#{pes.codigo}" />
-			</p:column>
-			
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+	<h:form id="form">
+		<h1>Listagem de Duplicidades</h1>
+		<p:commandLink action="#{pessoaController.voltarParaIndex()}"
+			value="Voltar" />
+		<p:dataTable var="pes" value="#{pessoaController.lista}"
+			selectionMode="single" selection="#{pessoaController.pessoa}" rowKey="#{pes.id}">
+			<p:ajax event="rowSelect" listener="#{pessoaController.preencherCard}" update=":form:card"/>
 			<p:column headerText="Nome">
 				<h:outputText value="#{pes.nome}" />
 			</p:column>
 		</p:dataTable>
-	
-	</h:body>
+
+		<h3>Paciente Selecionado</h3>
+		<p:panelGrid columns="2" id="card" style="width: 600px;">
+
+			<p:outputLabel for="codigo" value="Codigo: " />
+			<h:outputText value="#{pessoaController.pessoa.id}" id="codigo" />
+
+			<p:outputLabel for="nome" value="Nome: " />
+			<h:outputText value="#{pessoaController.pessoa.nome}" id="nome" />
+			
+			<p:outputLabel for="nomeMae" value="Nome da Mae: " />
+			<h:outputText value="#{pessoaController.pessoa.estado}" id="nomeMae" />
+
+
+		</p:panelGrid>
+	</h:form>
+</h:body>
 </html>

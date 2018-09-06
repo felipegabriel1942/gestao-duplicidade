@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<h1>Pagina de Cadastro</h1>
+	<h:form>
+		<p:commandLink action="#{pessoaController.voltarParaIndex()}" value="Voltar"/>
+		<p:panelGrid columns="2">
+			<p:outputLabel for="nome" value="Nome: "/>
+			<p:inputText id="nome" value="#{pessoaController.pessoa.nomepessoa}"/>
+		</p:panelGrid>
+		<h:commandButton action="#{pessoaController.inserirDados()}" value="Gravar" />
+	</h:form>
+
+</h:body>
+</html>

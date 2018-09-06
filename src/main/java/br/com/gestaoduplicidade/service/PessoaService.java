@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.gestaoduplicidade.dto.PessoaDTO;
+import br.com.gestaoduplicidade.model.Pessoa;
 import br.com.gestaoduplicidade.repository.PessoaRepository;
 
 @Named("pessoaService")
@@ -23,10 +24,11 @@ public class PessoaService implements Serializable {
 	private PessoaRepository pr;
 
 	public List<PessoaDTO> listarTodos() {
-		if (pr.listarPessoas() != null) {
-			return pr.listarPessoas();
-		}
-
-		return null;
+		return pr.listarPessoasTabelaPrincipal();
 	}
+	
+	public PessoaDTO preencherCard(Integer id) {
+		return pr.preencherCardDeDados(id);
+	}
+	
 }
